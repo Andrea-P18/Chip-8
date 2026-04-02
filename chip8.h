@@ -2,6 +2,8 @@
 #include <stdint.h>
 #include <stdlib.h> // Sostituito stdvoid.h
 
+#define DIM_DISPLAY 64*32
+
 typedef struct{
     //memory section
     uint8_t memory[4096]; /*Memoria di 4096 byte*/
@@ -21,11 +23,11 @@ typedef struct{
     uint8_t keypad[16];
 
     //Display
-    uint8_t display[64*32]; /*I valori all'interno saranno 0 o 1*/
+    uint8_t display[DIM_DISPLAY]; /*I valori all'interno saranno 0 o 1*/
 
 } chip8;
 
-// --- Istruzioni che avevi già scritto (corrette) ---
+
 void SYS(chip8* c8, uint16_t addr); 
 void CLS(chip8* c8); 
 void RET(chip8* c8); 
@@ -61,3 +63,6 @@ void LD_F_Vx(chip8* c8, uint8_t x);   /* Fx29 - Imposta I all'indirizzo del font
 void LD_B_Vx(chip8* c8, uint8_t x);   /* Fx33 - Salva la rappresentazione BCD di Vx in I, I+1 e I+2 */
 void STR_V(chip8* c8, uint8_t x);     /* Fx55 - Salva in memoria i registri da V0 a Vx partendo dall'indirizzo I */
 void LDR_V(chip8* c8, uint8_t x);     /* Fx65 - Carica dalla memoria i registri da V0 a Vx partendo dall'indirizzo I */
+
+void init_chip8(chip8* c8);
+void init_display(chip8* c8);
