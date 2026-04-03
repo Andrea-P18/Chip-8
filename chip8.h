@@ -14,7 +14,7 @@ typedef struct{
     uint8_t DT;          /*Delay timer register*/
     uint8_t ST;          /*Sound timer register*/
     uint16_t PC;
-    uint8_t SP;
+    int8_t SP;
     
     //stack section
     uint16_t stack[16];
@@ -33,7 +33,7 @@ void CLS(chip8* c8);
 void RET(chip8* c8); 
 void JP(chip8* c8, uint16_t addr); 
 void CALL(chip8* c8, uint16_t addr); 
-void SE(chip8* c8, uint8_t x, uint8_t kk); // Aggiunto il punto e virgola
+void SE(chip8* c8, uint8_t x, uint8_t kk);
 void SNE(chip8* c8, uint8_t x, uint8_t kk); 
 void SEXY(chip8* c8, uint8_t x, uint8_t y); 
 void LD(chip8* c8, uint8_t x, uint8_t kk); 
@@ -66,3 +66,8 @@ void LDR_V(chip8* c8, uint8_t x);     /* Fx65 - Carica dalla memoria i registri 
 
 void init_chip8(chip8* c8);
 void init_display(chip8* c8);
+void init_stack(chip8* c8);
+uint8_t load_rom(char* filename, chip8* c8);
+void init_keypad(chip8*c8);
+
+extern uint8_t fontset[80];
